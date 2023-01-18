@@ -1,0 +1,39 @@
+﻿---
+ID: "b5a9a69e-aa9b-4223-a33e-15938b151242"
+Parent: "46c05601-8322-4e85-bcc2-f4bd3c1e179b"
+Template: "49c111d0-6867-4798-a724-1f103166e6e9"
+Path: /sitecore/content/HeadlessSXA/HeadlessSXA/Presentation/Headless Variants/Promo2
+BranchID: "c00ba3fa-ad4f-4f97-bdb2-42387d90b8b1"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/window_dialog.png
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{2365B52C-FF34-41C1-8D30-191A7DA158AA}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230111T174310Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\rics@sitecore.net
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\rics@sitecore.net
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "706c1c8b-8f11-4f7a-9649-55a780e05c6c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\rics@sitecore.net
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230111T174310Z
