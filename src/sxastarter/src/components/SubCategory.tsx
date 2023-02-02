@@ -3,6 +3,7 @@ import {
   RichText as JssRichText,
   useSitecoreContext,
   RichTextField,
+  GetStaticComponentProps,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -23,6 +24,7 @@ type ProductDetailProps = {
   params: { [key: string]: string };
   fields: Fields;
   product: Product;
+  path: string;
 };
 
 type ComponentContentProps = {
@@ -77,4 +79,14 @@ export const Default = (props: ProductDetailProps): JSX.Element => {
       </>
     </ComponentContent>
   );
+};
+
+export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
+  console.debug('getStaticProps', { rendering, layoutData, context });
+  console.debug('paths', context?.params?.requestPath);
+  return {
+    props: {
+      params: rendering.params,
+    },
+  };
 };
