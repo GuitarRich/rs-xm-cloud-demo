@@ -87,6 +87,11 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 // It may be called again, on a serverless function, if
 // revalidation (or fallback) is enabled and a new request comes in.
 export const getStaticProps: GetStaticProps = async (context) => {
+  // Replace the path with the products path
+  if (context.params) {
+    context.params.requestPath = context.params.path;
+    context.params.path = [`products/,-w-,`];
+  }
   const props = await sitecorePagePropsFactory.create(context);
 
   // Check if we have a redirect (e.g. custom error page)

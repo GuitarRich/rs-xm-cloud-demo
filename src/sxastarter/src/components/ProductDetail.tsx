@@ -1,67 +1,53 @@
 import React from 'react';
-import {
-  RichText as JssRichText,
-  useSitecoreContext,
-  RichTextField,
-} from '@sitecore-jss/sitecore-jss-nextjs';
-
-interface Fields {
-  Content: RichTextField;
-}
+import { GetStaticComponentProps } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
+  category: string;
   image: string;
 }
 
 type ProductDetailProps = {
   params: { [key: string]: string };
-  fields: Fields;
   product: Product;
 };
 
-type ComponentContentProps = {
-  id: string;
-  styles: string;
-  children: JSX.Element;
-};
-
-const ComponentContent = (props: ComponentContentProps) => {
-  const id = props.id;
+export const Default = (props: ProductDetailProps): JSX.Element => {
   return (
-    <div className={`component content ${props.styles}`} id={id ? id : undefined}>
-      <div className="component-content">
-        <div className="field-content">{props.children}</div>
-      </div>
+    <div
+      className={`component product-detail ${props.params.styles}`}
+      id={props.params.RenderingIdentifier ?? undefined}
+    >
+      <h1>{props.product.name}</h1>
+      <h3>{props.product.category}</h3>
+      <p>{props.product.description}</p>
+      <p>Price: ${props.product.price}</p>
+      <img src={props.product.image} alt={props.product.name} />
     </div>
   );
 };
 
-export const Default = (props: ProductDetailProps): JSX.Element => {
-  const { sitecoreContext } = useSitecoreContext();
-
-  if (!(props.fields && props.fields.Content) && !sitecoreContext?.route?.fields?.Content) {
-    return (
-      <div className={`component content ${props.params.styles}`}>
-        <div className="component-content">
-          <div className="field-content">[Content]</div>
-        </div>
-      </div>
-    );
+export const getStaticComponentProps: GetStaticComponentProps = async (context) => {
+  const productId = context?.params?.requestPath[0] || '';
+  if (productId === '') {
+    // This shouldn't happen, but just in case let's throw a 404
+    // TODO: 404
   }
 
-  const field = (
-    props.fields && props.fields.Content
-      ? props.fields.Content
-      : sitecoreContext?.route?.fields?.Content
-  ) as RichTextField;
+  const productResponse = await fetch(`https://fakestoreapi.com/products/${productId}`);
+  const product = await productResponse.json();
 
-  return (
-    <ComponentContent styles={props.params.styles} id={props.params.RenderingIdentifier}>
-      <JssRichText field={field} />
-    </ComponentContent>
-  );
+  if (product === null) {
+    // TODO: 404
+  }
+
+  return {
+    props: {
+      params: context.params,
+      product: product,
+    },
+  };
 };

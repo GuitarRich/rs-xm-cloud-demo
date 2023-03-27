@@ -1,10 +1,10 @@
 {
-  "name": "headlesssxa",
+  "name": "fancysite",
   "description": "Application utilizing Sitecore JavaScript Services and Next.js",
   "version": "21.0.0",
   "private": true,
   "config": {
-    "appName": "headlesssxa",
+    "appName": "fancysite",
     "rootPlaceholders": [
       "jss-main"
     ],
@@ -81,6 +81,7 @@
     "build": "npm-run-all --serial bootstrap next:build",
     "graphql:update": "ts-node --project tsconfig.scripts.json ./scripts/fetch-graphql-introspection-data.ts",
     "next:build": "next build",
+    "next:export": "next export",
     "next:dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "next:start": "next start",
     "scaffold": "ts-node --project tsconfig.scripts.json scripts/scaffold-component.ts",
